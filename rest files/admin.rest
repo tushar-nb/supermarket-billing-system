@@ -1,0 +1,98 @@
+@baseURL = http://localhost:8085/api/v1/admin
+@baseURL1 = http://localhost:8085/api/v1/seller
+@baseURL2 = http://localhost:8085/api/v1/products
+@baseURL3 = http://localhost:8085/api/v1/bills
+
+### create new admin
+POST {{baseURL}}
+Content-Type: application/json
+
+{
+    "name" : "Tushar n b",
+    "email": "admin2@gmail.com",
+    "password": "12346"
+}
+
+### create new seller
+POST {{baseURL}}/seller
+Content-Type: application/json
+
+{
+    "name" : "Seller",
+    "email": "seller@gmail.com",
+    "password": "1234"
+}
+
+### login admin
+POST {{baseURL1}}/products
+Content-Type: application/json
+
+{
+    "name" : "Product 1",
+    "price": 100,
+    "quantity": 10
+}
+
+### login bills
+POST {{baseURL1}}/1/bills
+Content-Type: application/json
+
+{
+    "bill": [
+        {
+            "product_id": 1,
+            "quantity": 2
+        },
+        {
+            "product_id": 2,
+            "quantity": 3
+        }
+    ],
+    
+}
+
+### get all products of a bill
+GET {{baseURL1}}/1/bills/1
+
+### get all products
+GET {{baseURL2}}
+
+### add product to a bill
+POST {{baseURL2}}
+Content-Type: application/json
+
+{
+    "name": "Product 1",
+    "price": 100,
+    "total": 200,
+    "available":200
+}
+
+### update product
+PATCH  {{baseURL2}}/1
+Content-Type: application/json
+
+{
+    "name": "Product 3",
+    "price": 2,
+    "total": 3,
+    "available":3
+}
+
+### create seller bill 
+POST {{baseURL3}}/create/1
+Content-Type: application/json
+
+{
+    "bill":
+    {
+        "product_id": 1,
+        "product_name": "Product 1",
+        "quantity": 1,
+        "total": 200
+    }
+}
+
+### get bills of seller
+GET {{baseURL3}}/1
+
